@@ -35,7 +35,7 @@ header {
     display: flex;             /* Active le mode Flexbox */
     justify-content: space-between; /* Pousse les éléments aux extrémités */
     align-items: center;       /* Centre verticalement */
-    padding: 2rem 10%;          /* De l'espace autour (Haut/Bas  Gauche/Droite) */
+    padding: 1rem 2%;          /* De l'espace autour (Haut/Bas  Gauche/Droite) */
     border-bottom: 1px solid var(--gold); /* La petite ligne chic en bas du menu */
     position: sticky;          /* Le menu reste collé en haut quand on scrolle */
     top: 0;
@@ -56,7 +56,7 @@ header {
 nav ul {
     display: flex; /* Met les puces les unes à côté des autres */
     list-style: none; /* Enlève les points • des listes */
-    gap: 2rem; /* Espace de 2rem entre chaque lien */
+    gap: 4rem; /* Espace de 2rem entre chaque lien */
 }
 
 /* Les liens du menu quand on passe la souris dessus (Hover) */
