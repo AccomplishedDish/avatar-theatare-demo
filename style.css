@@ -1,0 +1,271 @@
+:root {
+    --bg-dark: #121212;
+    --text-light: #f0f0f0;
+    --gold: #D4AF37;
+    --red-velvet: #C21807;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Très important pour que les largeurs soient respectées */
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold); /* Les titres seront dorés par défaut */
+    margin-bottom: 1rem;
+}
+
+a {
+    text-decoration: none; /* Enlève le soulignement moche des liens */
+    color: inherit; /* Le lien prend la couleur du texte autour de lui */
+    transition: 0.3s; /* Pour que les changements de couleur soient fluides */
+}
+
+header {
+    background-color: #1a1a1a; /* Un peu plus clair que le fond pour se détacher */
+    display: flex;             /* Active le mode Flexbox */
+    justify-content: space-between; /* Pousse les éléments aux extrémités */
+    align-items: center;       /* Centre verticalement */
+    padding: 2rem 10%;          /* De l'espace autour (Haut/Bas  Gauche/Droite) */
+    border-bottom: 1px solid var(--gold); /* La petite ligne chic en bas du menu */
+    position: sticky;          /* Le menu reste collé en haut quand on scrolle */
+    top: 0;
+    z-index: 1000;             /* S'assure que le menu passe PAR DESSUS tout le reste */
+}
+
+/* Le Logo */
+.logo a {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-light);
+    letter-spacing: 2px; /* Espacer les lettres fait très "luxe" */
+    text-transform: uppercase;
+}
+
+/* La liste des liens (<ul>) */
+nav ul {
+    display: flex; /* Met les puces les unes à côté des autres */
+    list-style: none; /* Enlève les points • des listes */
+    gap: 2rem; /* Espace de 2rem entre chaque lien */
+}
+
+/* Les liens du menu quand on passe la souris dessus (Hover) */
+nav a:hover {
+    color: var(--gold); /* Devient doré au survol */
+}
+
+/* Le bouton "Contact" spécial dans le menu */
+.btn-nav {
+    border: 1px solid var(--gold);
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px; /* Arrondit légèrement les coins */
+}
+
+.btn-nav:hover {
+    background-color: var(--gold);
+    color: var(--bg-dark); /* Le texte devient noir pour le contraste */
+}
+
+/* --- SECTION HERO --- */
+
+.hero {
+    /* 1. La taille */
+    height: 85vh; /* Prend 85% de la hauteur de l'écran (laisse voir le bas) */
+    width: 100%;
+
+    /* 2. L'image de fond + Le filtre sombre */
+    /* L'ordre est important : le dégradé noir (gradient) est PAR DESSUS l'image (url) */
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1503095396549-807759245b35?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGglQzMlQTklQzMlQTJ0cmV8ZW58MHx8MHx8fDA%3D');
+    
+    background-size: cover;   /* L'image s'étire pour couvrir tout l'espace sans se déformer */
+    background-position: center; /* L'image reste centrée même si on redimensionne */
+    background-attachment: fixed; /* EFFET PARALLAXE : L'image reste fixe quand on scrolle ! (Optionnel mais classe) */
+
+    /* 3. Le centrage (Flexbox encore !) */
+    display: flex;
+    flex-direction: column; /* Empile le titre et le bouton */
+    justify-content: center; /* Centre verticalement */
+    align-items: center; /* Centre horizontalement */
+    text-align: center; /* Centre le texte lui-même */
+    padding: 0 20px; /* Pour pas que le texte touche les bords sur mobile */
+}
+
+/* Le grand titre H1 */
+.hero h1 {
+    font-size: 3.5rem; /* Très gros */
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* Petite ombre pour décoller du fond */
+}
+
+/* Le sous-titre paragraphe */
+.hero p {
+    font-size: 1.2rem;
+    max-width: 600px; /* Empêche le texte d'être trop large, c'est dur à lire */
+    margin-bottom: 2.5rem; /* Espace avant le bouton */
+    color: #ddd; /* Un gris très clair */
+}
+
+/* --- LE BOUTON D'ACTION (CTA) --- */
+.btn-primary {
+    display: inline-block; /* Nécessaire pour que le padding fonctionne sur un lien <a> */
+    background-color: var(--red-velvet);
+    color: white;
+    padding: 1rem 2.5rem; /* Gros bouton facile à cliquer */
+    border-radius: 50px; /* Forme de pilule moderne */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid var(--red-velvet); /* Bordure solide */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5); /* Ombre portée sous le bouton */
+}
+
+/* Animation au survol du bouton */
+.btn-primary:hover {
+    background-color: transparent; /* Le fond devient transparent */
+    color: var(--red-velvet); /* Le texte devient rouge */
+    transform: translateY(-3px); /* Le bouton monte un tout petit peu (effet levier) */
+}
+
+/* --- SECTION SERVICES (La Grille) --- */
+
+.services-section {
+    padding: 5rem 5%; /* Beaucoup d'espace en haut et en bas pour laisser respirer */
+    text-align: center; /* Pour centrer le titre H2 "Nos Prestations" */
+    background-color: #0f0f0f; /* Un fond très légèrement différent pour marquer la section */
+}
+
+.services-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem; /* Espace sous le titre avant que la grille commence */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* --- LE CONTENEUR DE LA GRILLE --- */
+.services-grid {
+    display: grid; /* On active le mode Grille */
+    
+    /* LA LIGNE MAGIQUE DU RESPONSIVE : */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    
+    gap: 2.5rem; /* L'espace (la gouttière) entre les cartes */
+    justify-content: center; /* Centre la grille si elle ne prend pas toute la largeur */
+}
+
+/* --- LES CARTES INDIVIDUELLES (<article>) --- */
+.service-card {
+    background-color: #1a1a1a; /* Fond de la carte (un gris foncé) */
+    padding: 3rem 2rem; /* Espace à l'intérieur de la carte */
+    
+    /* Le style "Chic" : Bordure fine et dorée (au lieu des pointillés) */
+    border: 1px solid var(--gold); 
+    border-radius: 4px; /* Coins à peine arrondis pour la douceur */
+    
+    transition: all 0.3s ease; /* Prépare l'animation fluide */
+}
+
+.service-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    /* La couleur est déjà gérée par le H3 global, mais on s'assure : */
+    color: var(--gold); 
+}
+
+.service-card p {
+    color: #ccc; /* Texte gris clair pour bien lire */
+    font-size: 1.1rem;
+}
+
+/* --- L'EFFET "WAHOU" AU SURVOL --- */
+.service-card:hover {
+    transform: translateY(-10px); /* La carte monte de 10 pixels */
+    background-color: #252525; /* Le fond s'éclaircit légèrement */
+    /* Une ombre portée... DORÉE ! */
+    box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.5); 
+    cursor: default; /* Le curseur reste une flèche */
+}
+
+/* --- SECTION À PROPOS --- */
+.about-section {
+    display: flex; /* Côte à côte par défaut */
+    align-items: center; /* Centré verticalement */
+    justify-content: space-between;
+    gap: 4rem; /* Grand espace entre l'image et le texte */
+    padding: 5rem 10%; /* Marges sur les côtés */
+    background-color: var(--bg-dark); /* Retour au fond de base */
+}
+
+/* L'image */
+.about-image {
+    flex: 1; /* Prend 1 part de l'espace */
+}
+
+.about-image img {
+    width: 100%; /* L'image s'adapte à la largeur de sa boîte */
+    border-radius: 4px;
+    box-shadow: -8px 8px 0px var(--gold); /* Un effet graphique décalé chic */
+}
+
+/* Le texte */
+.about-text {
+    flex: 1; /* Prend 1 part de l'espace (donc 50/50 avec l'image) */
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-bottom: 1.5rem;
+}
+
+/* --- LE RESPONSIVE (INDISPENSABLE) --- */
+/* Si l'écran est plus petit que 768px (Tablettes et Mobiles) */
+@media (max-width: 768px) {
+    .about-section {
+        flex-direction: column; /* On empile verticalement ! */
+        text-align: center; /* On centre le texte */
+    }
+
+    .about-image img {
+        max-width: 80%; /* On réduit un peu l'image sur mobile */
+        margin-bottom: 2rem; /* Espace sous l'image */
+        box-shadow: none; /* On enlève l'effet décalé sur mobile pour gagner de la place */
+    }
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: #000; /* Noir pur pour bien finir */
+    padding: 2rem;
+    text-align: center;
+    border-top: 1px solid var(--gold); /* La ligne de fermeture */
+}
+
+.footer-content p {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.socials a {
+    color: var(--gold);
+    margin: 0 10px; /* Espace entre les liens */
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.socials a:hover {
+    color: white;
+    text-decoration: underline;
+}
