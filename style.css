@@ -262,7 +262,7 @@ nav a:hover {
 .about-image img {
     width: 100%; /* L'image s'adapte à la largeur de sa boîte */
     border-radius: 4px;
-    box-shadow: -8px 8px 0px var(--gold); /* Un effet graphique décalé chic */
+    box-shadow: 8px 8px 0px var(--gold); /* Un effet graphique décalé chic */
 }
 
 /* Le texte */
@@ -286,34 +286,54 @@ nav a:hover {
     }
 
     header {
-        position: fixed; 
+        position: relative; 
+        display: block;
+        padding: 0;
+        border: none;
+        height: auto;
+    }
+
+    .logo {
+        position: fixed; /* C'est lui qui devient sticky/fixed */
         top: 0;
         left: 0;
         width: 100%;
+        height: 90px; /* On force une hauteur pour la barre du logo */
         
-        flex-direction: column;
-        padding: 1rem;
-        height: auto;
+        /* Style de la barre */
+        background-color: #1a1a1a;
+        border-bottom: 1px solid var(--gold); /* La ligne dorée est maintenant ici ! */
         
-        /* Important : On s'assure qu'il est bien visible */
-        background-color: #1a1a1a; 
-        z-index: 9999;
+        /* Centrage du logo */
+        display: flex;
+        align-items: center;
+        padding-left: 20px; /* Un peu d'air à gauche */
+        z-index: 9999; /* Par-dessus tout */
+    }
+
+    .hero {
+        margin-top: 0; /* Pour compenser le menu fixe */
     }
 
     nav {
-        margin-top: 1rem; /* Espace au-dessus du menu */
-        width: 100%; /* Le menu prend toute la largeur */
+        margin-top: 90px; /* Il commence exactement sous la barre du logo */
+        width: 100%;
+        background-color: #1a1a1a; /* Même fond pour faire un effet uni au départ */
+        padding: 1rem 0;
+        
+        /* Optionnel : Une petite ombre pour séparer le menu du contenu qui suit */
+        box-shadow: 0 5px 10px rgba(0,0,0,0.5);
     }
 
     nav ul {
         justify-content: center;
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 15px;
     }
 
     .logo img {
-        max-width: 100%;
-        height: auto;
+        max-height: 60px;
+        width: auto;
     }
     .about-section {
         flex-direction: column; /* On empile verticalement ! */
