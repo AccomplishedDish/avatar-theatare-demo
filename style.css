@@ -82,11 +82,8 @@ nav a:hover {
     /* 1. La taille */
     height: 85vh; /* Prend 85% de la hauteur de l'écran (laisse voir le bas) */
     width: 100%;
+    position: relative; /* Pour positionner les calques d'images de fond */
 
-    /* 2. L'image de fond + Le filtre sombre */
-    /* L'ordre est important : le dégradé noir (gradient) est PAR DESSUS l'image (url) */
-    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1503095396549-807759245b35?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGglQzMlQTklQzMlQTJ0cmV8ZW58MHx8MHx8fDA%3D');
-    
     background-size: cover;   /* L'image s'étire pour couvrir tout l'espace sans se déformer */
     background-position: center; /* L'image reste centrée même si on redimensionne */
     background-attachment: fixed; /* EFFET PARALLAXE : L'image reste fixe quand on scrolle ! (Optionnel mais classe) */
@@ -98,6 +95,57 @@ nav a:hover {
     align-items: center; /* Centre horizontalement */
     text-align: center; /* Centre le texte lui-même */
     padding: 0 20px; /* Pour pas que le texte touche les bords sur mobile */
+    /* NOUVEAUTÉ : La propriété d'animation */
+    /* 15s = Durée totale (15 secondes) | infinite = Répétition infinie | ease-in-out = Transition fluide */
+    background-color: #000; /* Couleur de fond de secours */
+    overflow: hidden; /* Pour éviter les débordements des calques */
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0; /* On rend les calques invisibles par défaut */
+    z-index: 1; /* Derrière le contenu */
+    animation: crossFade 15s infinite; /* Animation pour chaque calque */
+}
+
+/* --- LES IMAGES SPÉCIFIQUES --- */
+.layer-1 {
+    /* Image 1 */
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1503095396549-807759245b35?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGglQzMlQTklQzMlQTJ0cmV8ZW58MHx8MHx8fDA%3D');
+    animation-delay: 0s; /* Commence tout de suite */
+}
+
+.layer-2 {
+    /* Image 2 */
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWljcm9waG9uZXxlbnwwfHwwfHx8MA%3D%3D');
+    animation-delay: 5s; /* Commence après 5 secondes */
+}
+
+.layer-3 {
+    /* Image 3 */
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://miro.medium.com/1*YQFF7ickM0WXMmufwp-M1g.jpeg');
+    animation-delay: 10s; /* Commence après 10 secondes */
+}
+
+/* --- L'ANIMATION MAGIQUE --- */
+@keyframes crossFade {
+    0% { opacity: 0; }
+    10% { opacity: 1; } /* Fade In rapide (1.5 sec) */
+    33% { opacity: 1; } /* Reste visible pendant 5 sec environ */
+    43% { opacity: 0; } /* Fade Out doucement */
+    100% { opacity: 0; } /* Reste invisible en attendant son tour */
+}
+
+/* --- LE CONTENU TEXTE --- */
+.hero-content {
+    position: relative;
+    z-index: 2; /* Devant les images */
 }
 
 /* Le grand titre H1 */
@@ -231,6 +279,42 @@ nav a:hover {
 /* --- LE RESPONSIVE (INDISPENSABLE) --- */
 /* Si l'écran est plus petit que 768px (Tablettes et Mobiles) */
 @media (max-width: 768px) {
+
+    html, body {
+        overflow-x: hidden; /* Empêche le scroll horizontal gênant */
+        width: 100%; /* Assure que le corps prend toute la largeur */
+    }
+
+    header {
+        position: fixed; 
+        top: 0;
+        left: 0;
+        width: 100%;
+        
+        flex-direction: column;
+        padding: 1rem;
+        height: auto;
+        
+        /* Important : On s'assure qu'il est bien visible */
+        background-color: #1a1a1a; 
+        z-index: 9999;
+    }
+
+    nav {
+        margin-top: 1rem; /* Espace au-dessus du menu */
+        width: 100%; /* Le menu prend toute la largeur */
+    }
+
+    nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .logo img {
+        max-width: 100%;
+        height: auto;
+    }
     .about-section {
         flex-direction: column; /* On empile verticalement ! */
         text-align: center; /* On centre le texte */
@@ -242,6 +326,62 @@ nav a:hover {
         box-shadow: none; /* On enlève l'effet décalé sur mobile pour gagner de la place */
     }
 }
+
+/* --- SECTION CONTACT --- */
+.contact-section {
+    padding: 5rem 10%;
+    text-align: center;
+    background-color: #0f0f0f; /* Un fond légèrement plus sombre pour changer */
+}
+.contact-section p {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    align-self: center;
+}
+
+/* Le conteneur du formulaire (pour le centrer) */
+.contact-form {
+    max-width: 600px; /* On limite la largeur à 600px pour qu'il soit lisible */
+    margin: 0 auto; /* C'est ça qui centre le formulaire (horizontalement) */
+    display: flex;
+    flex-direction: column;
+    text-align: left; /* Le texte des labels revient à gauche */
+}
+
+.contact-form label {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: var(--gold); /* Labels en doré ! */
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* Le style des champs de texte */
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    padding: 1rem;
+    border: 1px solid #333;
+    background-color: #1a1a1a; /* Fond des champs très foncé */
+    color: var(--text-light);
+    border-radius: 4px;
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+}
+
+.contact-form textarea {
+    resize: vertical; /* Permet seulement d'agrandir verticalement */
+}
+
+/* On réutilise le bouton principal, mais on ajoute un espace au-dessus */
+.contact-form .btn-primary {
+    margin-top: 2.5rem;
+    align-self: center; /* Aligne le bouton à gauche du formulaire */
+    transition: 0.3s; 
+}
+
 
 /* --- FOOTER --- */
 footer {

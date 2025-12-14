@@ -29,6 +29,10 @@
         <main>
 
             <section class="hero">
+                <div class="hero-bg layer-1"></div>
+                <div class="hero-bg layer-2"></div>
+                <div class="hero-bg layer-3"></div>
+                
                 <div class="hero-content">
                     <h1>L'art du théatre sur mesure</h1>
                     <p>Animations et intervention théatrales pour vos évènements corporatifs.</p>
@@ -66,6 +70,22 @@
                     <p>Depuis 2005, Avatar Théâtre conçoit des expériences uniques...</p> </div>
             </section>
 
+            <section id="contact" class="contact-section">
+                <h2>Créons votre évènement</h2>
+                <form action="https://formspree.io/f/xrbnjvzg" method="POST" id="my-form" class="contact-form">
+                    <label for="name">Votre Nom :</label>
+                    <input type="text" id="name" name="name" required />
+
+                    <label for="email">Votre Courriel :</label>
+                    <input type="email" id="email" name="email" required />
+
+                    <label for="message">Votre Demande :</label>
+                    <textarea id="message" name="message" rows="6" required></textarea>
+
+                    <button type="submit" class="btn-primary">Envoyer la Demande</button>
+                    <p id="my-form-status"></p>
+                </form>
+
         </main>
 
         <footer>
@@ -76,5 +96,7 @@
                 <a href="#">Instagram</a>
             </div>
         </div>
-    </footer>
+        </footer>
+    <script src="script.js"></script>
+    </body>
 </html>
