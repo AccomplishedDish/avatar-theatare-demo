@@ -14,7 +14,7 @@ async function handleSubmit(event) {
   }).then(response => {
     if (response.ok) {
       status.innerHTML = "Merci ! Votre message a bien été envoyé.";
-      status.style.color = "#D4AF37"; 
+      status.style.color = "#C21807"; 
       form.reset(); 
     } else {
       response.json().then(data => {

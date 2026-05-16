@@ -1,8 +1,8 @@
 :root {
     --bg-dark: #121212;
     --text-light: #f0f0f0;
-    --gold: #D4AF37;
     --red-velvet: #C21807;
+    --accent-red: #C21807;
 }
 
 * {
@@ -20,7 +20,7 @@ body {
 
 h1, h2, h3 {
     font-family: 'Playfair Display', serif;
-    color: var(--gold); /* Les titres seront dorés par défaut */
+    color: var(--text-light); /* Les titres restent clairs */
     margin-bottom: 1rem;
 }
 
@@ -36,7 +36,7 @@ header {
     justify-content: space-between; /* Pousse les éléments aux extrémités */
     align-items: center;       /* Centre verticalement */
     padding: 1rem 2%;          /* De l'espace autour (Haut/Bas  Gauche/Droite) */
-    border-bottom: 1px solid var(--gold); /* La petite ligne chic en bas du menu */
+    border-bottom: 1px solid var(--accent-red); /* La petite ligne accentuée en bas du menu */
     position: sticky;          /* Le menu reste collé en haut quand on scrolle */
     top: 0;
     z-index: 1000;             /* S'assure que le menu passe PAR DESSUS tout le reste */
@@ -56,23 +56,40 @@ header {
 nav ul {
     display: flex; /* Met les puces les unes à côté des autres */
     list-style: none; /* Enlève les points • des listes */
-    gap: 4rem; /* Espace de 2rem entre chaque lien */
+    gap: 0.9rem; /* Espace plus compact entre chaque bouton */
+    align-items: center;
+}
+
+nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.1rem;
+    padding: 0.7rem 1.15rem;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-size: 0.96rem;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
 }
 
 /* Les liens du menu quand on passe la souris dessus (Hover) */
 nav a:hover {
-    color: var(--gold); /* Devient doré au survol */
+    border-color: var(--accent-red);
+    background-color: rgba(194, 24, 7, 0.08);
+    color: var(--accent-red); /* Devient rouge au survol */
 }
 
 /* Le bouton "Contact" spécial dans le menu */
 .btn-nav {
-    border: 1px solid var(--gold);
-    padding: 0.5rem 1.5rem;
-    border-radius: 4px; /* Arrondit légèrement les coins */
+    border: 1px solid var(--accent-red);
+    padding: 0.7rem 1.3rem;
+    border-radius: 10px;
+    background-color: rgba(194, 24, 7, 0.12);
 }
 
 .btn-nav:hover {
-    background-color: var(--gold);
+    background-color: var(--accent-red);
     color: var(--bg-dark); /* Le texte devient noir pour le contraste */
 }
 
@@ -216,8 +233,8 @@ nav a:hover {
     background-color: #1a1a1a; /* Fond de la carte (un gris foncé) */
     padding: 3rem 2rem; /* Espace à l'intérieur de la carte */
     
-    /* Le style "Chic" : Bordure fine et dorée (au lieu des pointillés) */
-    border: 1px solid var(--gold); 
+    /* Le style "Chic" : Bordure fine rouge (au lieu des pointillés) */
+    border: 1px solid var(--accent-red); 
     border-radius: 4px; /* Coins à peine arrondis pour la douceur */
     
     transition: all 0.3s ease; /* Prépare l'animation fluide */
@@ -226,8 +243,8 @@ nav a:hover {
 .service-card h3 {
     font-size: 1.8rem;
     margin-bottom: 1rem;
-    /* La couleur est déjà gérée par le H3 global, mais on s'assure : */
-    color: var(--gold); 
+    /* La couleur reste accentuée pour les titres de cartes : */
+    color: var(--accent-red); 
 }
 
 .service-card p {
@@ -239,8 +256,8 @@ nav a:hover {
 .service-card:hover {
     transform: translateY(-10px); /* La carte monte de 10 pixels */
     background-color: #252525; /* Le fond s'éclaircit légèrement */
-    /* Une ombre portée... DORÉE ! */
-    box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.5); 
+    /* Une ombre portée... rouge ! */
+    box-shadow: 0 10px 30px -10px rgba(194, 24, 7, 0.5); 
     cursor: default; /* Le curseur reste une flèche */
 }
 
@@ -262,7 +279,7 @@ nav a:hover {
 .about-image img {
     width: 100%; /* L'image s'adapte à la largeur de sa boîte */
     border-radius: 4px;
-    box-shadow: 8px 8px 0px var(--gold); /* Un effet graphique décalé chic */
+    box-shadow: 8px 8px 0px var(--accent-red); /* Un effet graphique décalé chic */
 }
 
 /* Le texte */
@@ -302,7 +319,7 @@ nav a:hover {
         
         /* Style de la barre */
         background-color: #1a1a1a;
-        border-bottom: 1px solid var(--gold); /* La ligne dorée est maintenant ici ! */
+        border-bottom: 1px solid var(--accent-red); /* La ligne accentuée est maintenant ici ! */
         
         /* Centrage du logo */
         display: flex;
@@ -372,7 +389,7 @@ nav a:hover {
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
     font-weight: bold;
-    color: var(--gold); /* Labels en doré ! */
+    color: var(--text-light); /* Labels clairs */
     text-transform: uppercase;
     font-size: 0.9rem;
     letter-spacing: 1px;
@@ -408,7 +425,7 @@ footer {
     background-color: #000; /* Noir pur pour bien finir */
     padding: 2rem;
     text-align: center;
-    border-top: 1px solid var(--gold); /* La ligne de fermeture */
+    border-top: 1px solid var(--accent-red); /* La ligne de fermeture */
 }
 
 .footer-content p {
@@ -418,7 +435,7 @@ footer {
 }
 
 .socials a {
-    color: var(--gold);
+    color: var(--accent-red);
     margin: 0 10px; /* Espace entre les liens */
     font-weight: bold;
     font-size: 0.9rem;
